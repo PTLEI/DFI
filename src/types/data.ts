@@ -8,10 +8,8 @@ export interface Info {
 }
 
 export interface Blocks {
-  base?: {
-    first_name: string;
-    last_name: string;
-    pronouns: string;
-    location: string;
-  };
+  first_name?: string;
+  last_name?: string;
+  pronouns?: string;
+  location?: string;
 }

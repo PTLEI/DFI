@@ -26,3 +26,8 @@ body {
     text-wrap: balance;
   }
 }
+
+.main-tabs > .tab-content {
+  flex: 1;
+  overflow: auto;
+}
