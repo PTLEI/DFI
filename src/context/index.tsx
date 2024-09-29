@@ -1,5 +1,5 @@
 "use client"
-import { infoData, LAYOUT_KEY } from '@/constant/data';
+import { infoData, LAYOUT_KEY, SECTION_KEY } from '@/constant/general';
 import { Info, Blocks } from '@/types/data';
 import { CallBackFunc } from '@/types/general';
 import React, { useState, useContext } from "react";
@@ -14,6 +14,8 @@ export interface GlobalState {
   setTab?: CallBackFunc
   editingKey?: string
   setEditingKey?: CallBackFunc
+  editingExtra?: string
+  setEditingExtra?: CallBackFunc
 }
 
 const defaultContextState = {
@@ -26,7 +28,8 @@ export const Provider: React.FC<ProviderProps> = (
 ): JSX.Element => {
   const [data, setData] = useState(infoData);
   const [tab, setTab] = useState(LAYOUT_KEY);
-  const [editingKey, setEditingKey] = useState<string>();
+  const [editingKey, setEditingKey] = useState<string>(SECTION_KEY.BADGES);
+  const [editingExtra, setEditingExtra] = useState<string>(SECTION_KEY.BADGES);
 
   return (
     <GlobalContext.Provider
@@ -37,6 +40,8 @@ export const Provider: React.FC<ProviderProps> = (
         setTab,
         editingKey,
         setEditingKey,
+        editingExtra,
+        setEditingExtra,
       }}
     >
       {props.children}

@@ -8,8 +8,18 @@ export interface Info {
 }
 
 export interface Blocks {
+  avatar?: string;
   first_name?: string;
   last_name?: string;
   pronouns?: string;
   location?: string;
+  badges?: string[];
+  about_me?: string;
+  contact_me?: string;
+}
+
+export interface Badge {
+  name: string;
+  color: string;
+  icon: string;
 }

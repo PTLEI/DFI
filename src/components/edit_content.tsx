@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import PersonInfo from './blocks_info/p_info';
-
+import AboutInfo from './blocks_info/about_info';
 const EditContent = () => {
   return (
     <div className="flex-1 py-4 px-8 bg-lime-100">
@@ -10,6 +10,7 @@ const EditContent = () => {
       </div>
       <div className='mt-4'>
         <PersonInfo/>
+        <AboutInfo/>
       </div>
     </div>
   );

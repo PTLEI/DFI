@@ -1,14 +1,14 @@
 import { Tabs, Tab, TabPane } from "react-bootstrap";
 import { Fragment, useContext, useMemo } from "react";
 import GlobalContext from "@/context";
-import { BLOCKS_KEY, COLOR_KEY, LAYOUT_KEY, TYPE_KEY } from "@/constant/data";
+import { BLOCKS_KEY, COLOR_KEY, LAYOUT_KEY, TYPE_KEY } from "@/constant/general";
 
 import TabLayout from "./nav_tab/tab_layout";
 import TabColor from "./nav_tab/tab_color";
 import TabType from "./nav_tab/tab_type";
 import TabBlocks from "./nav_tab/tab_blocks";
 import PaneLayout from './layout/pane_layout';
-import BlocksSettings from './blocks_setting';
+import {BlocksSettings, ExtraBlockSettings} from './blocks_setting';
 
 const TABS_OBJ: Record<string, { content: React.FC; title: string }> = {
   [LAYOUT_KEY]: {
@@ -30,7 +30,7 @@ const TABS_OBJ: Record<string, { content: React.FC; title: string }> = {
 };
 
 const Nav = () => {
-  const { tab, setTab, editingKey } = useContext(GlobalContext);
+  const { tab, setTab, editingKey, editingExtra } = useContext(GlobalContext);
 
   const onTabChanged = (activeKey: string | null) => {
     if (activeKey) {
@@ -61,6 +61,7 @@ const Nav = () => {
         </TabPane>
       </Tabs>
       {editingKey && <BlocksSettings/>}
+      {editingExtra && <ExtraBlockSettings/>}
     </div>
   );
 };

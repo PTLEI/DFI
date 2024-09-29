@@ -1,0 +1,16 @@
+@import "react-quill/dist/quill.snow.css";
+
+.quill {
+  height: 100%;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.ql-toolbar.ql-snow {
+    border-width: 0;
+    border-bottom-width: 1px;
+}
+
+.ql-container.ql-snow {
+    border: none;
+}
