@@ -1,6 +1,6 @@
 const PaneLayout: React.FC<{children: React.ReactNode}> = ({children}) => {
   return (
-    <div className='mx-3'>
+    <div>
       {children}
     </div>
   )

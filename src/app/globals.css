@@ -19,6 +19,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
 }
 
 @layer utilities {
@@ -30,4 +31,44 @@ body {
 .main-tabs > .tab-content {
   flex: 1;
   overflow: auto;
+}
+
+.nav {
+  --bs-nav-link-padding-y: 0.75rem;
+  --bs-nav-link-color: #999999;
+  --bs-nav-link-hover-color: #666666;
+  --bs-nav-link-font-weight: 600;
+}
+
+.nav-underline {
+  @apply border-b;
+}
+
+.nav-underline .nav-link:not(.active):hover {
+  border-bottom-color: transparent;
+}
+
+.content-dashed {
+  margin: -16px;
+  padding: 16px;
+  cursor: pointer;
+  position: relative;
+}
+
+.content-dashed:hover, .located {
+  outline: 1px dashed var(--foreground);
+
+  > .info-block-title {
+    display: block;
+    position: absolute;
+    top: unset;
+    bottom: 100%;
+    left: 32px;
+    color: #fff;
+    background-color: #333342;
+    border-radius: 8px 8px 0px 0px;
+    padding: 4px 8px;
+    z-index: 3;
+    text-wrap: nowrap;
+  }
 }

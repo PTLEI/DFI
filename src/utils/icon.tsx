@@ -4,7 +4,7 @@ const Icon = ({
   className,
   style,
 }: {
-  icon: string;
+  icon?: string;
   onClick?: () => void;
   className?: string;
   style?: React.CSSProperties;

@@ -3,7 +3,7 @@ import { ComponentType, useCallback, useMemo } from 'react';
 
 import Icon from '@/utils/icon';
 import { useGlobalContext } from '@/context'
-import { SECTION_KEY } from '@/constant/general'
+import { SECTION_KEY, SECTION_TITLE } from '@/constant/general'
 import InfoSettings from './info_settings'
 import BadgesSettings, { AddBadges } from './badges_settings'
 import SocialSettings from './social_settings'
@@ -15,23 +15,23 @@ const AboutSettings = dynamic(() => import('./about_settings'), { ssr: false });
 
 const BLOCK_SETTINGS = {
   [SECTION_KEY.P_INFO]: {
-    title: 'Personal Info',
+    title: SECTION_TITLE[SECTION_KEY.P_INFO],
     Component: InfoSettings,
   },
   [SECTION_KEY.BADGES]: {
-    title: 'Badges',
+    title: SECTION_TITLE[SECTION_KEY.BADGES],
     Component: BadgesSettings,
   },
   [SECTION_KEY.ABOUT_ME]: {
-    title: 'About Me',
+    title: SECTION_TITLE[SECTION_KEY.ABOUT_ME],
     Component: AboutSettings,
   },
   [SECTION_KEY.SOCIAL]: {
-    title: 'Social',
+    title: SECTION_TITLE[SECTION_KEY.SOCIAL],
     Component: SocialSettings,
   },
   [SECTION_KEY.CONTACT_ME]: {
-    title: 'Contact Me',
+    title: SECTION_TITLE[SECTION_KEY.CONTACT_ME],
     Component: ContactSettings,
   },
 }

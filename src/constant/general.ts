@@ -1,10 +1,17 @@
-import { Badge } from '@/types/data'
+import { Badge, Blocks, Info } from '@/types/data'
 
-export const baseBlocks = {
-
+export const baseBlocks: Blocks = {
+  avatar: '/favicon.ico',
+  first_name: 'First Name ',
+  last_name: 'Last Name',
+  pronouns: 'Pronouns',
+  location: 'Location',
+  badges: ['Entrepreneur'],
+  about_me: '',
+  contact_me: '',
 }
 
-export const infoData =  {
+export const infoData: Info =  {
   layout: '',
   color: '',
   type: '',
@@ -26,9 +33,19 @@ export const SECTION_KEY = {
   LIBRARY: 'library',
 }
 
+export const SECTION_TITLE = {
+  [SECTION_KEY.P_INFO]: 'Personal Info',
+  [SECTION_KEY.BADGES]: 'Badges',
+  [SECTION_KEY.SOCIAL]: 'Social',
+  [SECTION_KEY.ABOUT_ME]: 'About Me',
+  [SECTION_KEY.CONTACT_ME]: 'Contact Me',
+  [SECTION_KEY.BODY]: 'body',
+  [SECTION_KEY.LIBRARY]: 'library',
+}
+
 export const BADGES: Badge[] = [
   {
-    name: 'Entrepreneur ',
+    name: 'Entrepreneur',
     color: '#F0E68C',
     icon: 'a-1',
   },

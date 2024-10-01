@@ -1,15 +1,16 @@
 import { useCallback, useMemo, useState } from "react";
 import { Button, FormControl } from "react-bootstrap";
 
-import { useBlocksData, useGlobalContext } from '@/context';
+import DraggableItem from "@/components/draggable_item";
+import { useBlocksData, useGlobalContext } from "@/context";
 import { Badge } from "@/types/data";
 import Icon from "@/utils/icon";
 import { BADGES, SECTION_KEY } from "@/constant/general";
 
-const BadgeItem: React.FC<{
+export const BadgeItem: React.FC<{
   badge: Badge;
-  selected: boolean;
-  onSelect: (badge: Badge) => void;
+  selected?: boolean;
+  onSelect?: (badge: Badge) => void;
 }> = ({ badge, selected, onSelect }) => {
   const [hover, setHover] = useState(false);
 
@@ -35,24 +36,32 @@ const BadgeItem: React.FC<{
         },
       };
     }
-    return { itemStyle: {}, textStyle: {}, iconStyle: {color: badge.color} };
+    return { itemStyle: {}, textStyle: {}, iconStyle: { color: badge.color } };
   }, [selected, hover, badge.color]);
+
+  const onMouseEnter = useCallback(() => {
+    if (onSelect) {
+      setHover(true)
+    }
+  }, [onSelect])
+
+  const onMouseLeave = useCallback(() => {
+    if (onSelect) {
+      setHover(false)
+    }
+  }, [onSelect])
 
   return (
     <div
-      className="flex items-center py-2 px-3 max-w-full rounded-full border border-gray-200 cursor-pointer select-none font-bold"
+      className={`flex items-center py-2 px-3 max-w-full rounded-full border border-gray-200 select-none font-bold ${onSelect ? 'cursor-pointer' : ''}`}
       style={{ ...itemStyle, ...textStyle }}
-      onMouseEnter={() => {
-        setHover(true);
-      }}
-      onMouseLeave={() => {
-        setHover(false);
-      }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       onClick={() => {
-        onSelect(badge);
+        onSelect?.(badge);
       }}
     >
-      <Icon className='mr-2' style={iconStyle} icon={badge.icon} />
+      <Icon className="mr-2" style={iconStyle} icon={badge.icon} />
       <span className="whitespace-nowrap overflow-hidden text-ellipsis">
         {badge.name}
       </span>
@@ -61,7 +70,7 @@ const BadgeItem: React.FC<{
 };
 
 export const AddBadges: React.FC = () => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const { blocks, updateBlocks } = useBlocksData();
 
   const badges = useMemo(() => {
@@ -70,7 +79,7 @@ export const AddBadges: React.FC = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-  }
+  };
 
   const handleSelectBadge = (badge: Badge) => {
     if (badges && badges.includes(badge.name)) {
@@ -82,9 +91,11 @@ export const AddBadges: React.FC = () => {
 
   return (
     <div className="p-3">
-      <FormControl placeholder="Search Badge" onChange={handleSearch}/>
+      <FormControl placeholder="Search Badge" onChange={handleSearch} />
       <div className="flex flex-wrap gap-2 mt-3">
-        {BADGES.filter((badge) => badge.name.toLowerCase().includes(search.toLowerCase())).map((badge) => (
+        {BADGES.filter((badge) =>
+          badge.name.toLowerCase().includes(search.toLowerCase())
+        ).map((badge) => (
           <BadgeItem
             key={badge.name}
             badge={badge}
@@ -112,18 +123,26 @@ const SelectedBadge: React.FC<{ badgeId: string }> = ({ badgeId }) => {
   if (!badge) return null;
 
   return (
-    <div className="flex items-center h-20 p-3 border-b border-gray-200">
-      <Icon className='mr-2 text-xl' icon='a-57' />
-      <Icon className='w-10 h-10 mx-2 rounded-lg' style={{backgroundColor: badge.color, color: 'white'}} icon={badge.icon} />
-      <div className='flex-1'>{badge.name}</div>
-      <Icon className='ml-2 text-red-500' icon='delete' onClick={handleDeleteBadge}/>
+    <div className="flex items-center h-20 p-3 border-b border-gray-200 bg-white">
+      <Icon className="mr-2 text-xl" icon="a-57" />
+      <Icon
+        className="w-10 h-10 mx-2 rounded-lg"
+        style={{ backgroundColor: badge.color, color: "white" }}
+        icon={badge.icon}
+      />
+      <div className="flex-1 font-bold">{badge.name}</div>
+      <Icon
+        className="ml-2 text-red-500"
+        icon="delete"
+        onClick={handleDeleteBadge}
+      />
     </div>
   );
 };
 
 const BadgesSettings: React.FC = () => {
   const { setEditingExtra } = useGlobalContext();
-  const { blocks } = useBlocksData();
+  const { blocks, updateBlocks } = useBlocksData();
 
   const badgeIds = useMemo(() => {
     return blocks.badges || [];
@@ -131,15 +150,35 @@ const BadgesSettings: React.FC = () => {
 
   const handleAddBadge = () => {
     setEditingExtra?.(SECTION_KEY.BADGES);
-  }
+  };
+
+  const moveBadge = (dragIndex: number, hoverIndex: number) => {
+    const badges = blocks.badges || [];
+    const badge = badges[dragIndex];
+    badges.splice(dragIndex, 1);
+    badges.splice(hoverIndex, 0, badge);
+    updateBlocks({ badges });
+  };
 
   return (
     <div className="flex flex-col">
-      <Button className="mt-4 mb-2 mx-3" variant="outline-secondary" onClick={handleAddBadge}>
+      <Button
+        className="mt-4 mb-2 mx-3"
+        variant="outline-secondary"
+        onClick={handleAddBadge}
+      >
         Add Badge
       </Button>
-      {badgeIds.map((badgeId) => (
-        <SelectedBadge key={badgeId} badgeId={badgeId} />
+      {badgeIds.map((badgeId, index) => (
+        <DraggableItem
+          key={badgeId}
+          id={badgeId}
+          index={index}
+          prefix={SECTION_KEY.BADGES}
+          moveItem={moveBadge}
+        >
+          <SelectedBadge badgeId={badgeId} />
+        </DraggableItem>
       ))}
     </div>
   );
