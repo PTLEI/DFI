@@ -21,7 +21,7 @@ const PreviewContent = () => {
   }, [data.type]);
 
   return (
-    <div className="flex-1 px-8 flex flex-col bg-lime-100">
+    <div className="flex-1 px-8 flex flex-col bg-[#E8F5E9]">
       <div className="flex flex-none justify-end mt-4">
         <Button>Preview</Button>
         <Button className=" ml-4">Save Change</Button>
