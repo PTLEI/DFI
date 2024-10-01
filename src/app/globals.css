@@ -28,6 +28,7 @@ body {
   }
 }
 
+/* overwrite bootstrap */
 .main-tabs > .tab-content {
   flex: 1;
   overflow: auto;
@@ -48,6 +49,11 @@ body {
   border-bottom-color: transparent;
 }
 
+.form-label {
+  @apply text-xs text-gray-500;
+}
+
+/* 自定义 */
 .content-dashed {
   margin: -16px;
   padding: 16px;
@@ -70,5 +76,17 @@ body {
     padding: 4px 8px;
     z-index: 3;
     text-wrap: nowrap;
+  }
+}
+
+.shimmer {
+  mask: linear-gradient(-60deg, #000 30%, rgba(0,0,0,0.333333), #000 70%) right/300% 100%;
+  background-repeat: no-repeat;
+  animation: shimmer 2.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    mask-position: left;
   }
 }

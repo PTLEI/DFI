@@ -62,7 +62,7 @@ const Nav = () => {
   }, [tab]);
 
   return (
-    <div className="flex flex-col flex-none w-1/3 border-r-gray-300 border-r main-tabs relative">
+    <div className="flex flex-col flex-none w-96 border-r-gray-300 border-r main-tabs relative">
       <Tabs
         variant="underline"
         fill

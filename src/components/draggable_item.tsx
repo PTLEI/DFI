@@ -1,6 +1,9 @@
 import { useDrop, useDrag, DragSourceMonitor } from "react-dnd";
 import { Identifier, XYCoord } from "dnd-core";
 import { useRef, useState, useEffect, useMemo } from "react";
+import clix from 'clsx';
+
+import Icon from '@/utils/icon';
 
 type DragItem = {
   index: number;
@@ -12,9 +15,11 @@ const DraggableItem: React.FC<{
   id: string;
   index: number;
   prefix: string;
+  className?: string;
+  dragIcon?: string;
   children: React.ReactNode;
   moveItem?: (dragIndex: number, hoverIndex: number, id: string) => void;
-}> = ({ id, index, prefix, moveItem, children }) => {
+}> = ({ id, index, prefix, moveItem, children, className, dragIcon }) => {
   const ref = useRef<HTMLDivElement>(null);
   const acceptKey = `${prefix}_${ACCEPT_KEY}`;
   const [prevIndex, setPrevIndex] = useState(index);
@@ -116,16 +121,25 @@ const DraggableItem: React.FC<{
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
 
+  const dragIconElement = useMemo(() => {
+    if (dragIcon) {
+      return <Icon className="mr-2 text-xl cursor-pointer h-10 w-10 rounded-full hover:bg-gray-200" icon={dragIcon} />;
+    }
+    return null;
+  }, [dragIcon]);
+
   return (
     <div
       ref={ref}
       data-handler-id={handlerId}
+      className={clix('flex items-center [&>:nth-child(2)]:flex-1', className)}
       style={{
         opacity,
         transition: 'transform 0.3s ease',
         ...transformStyle,
       }}
     >
+      {dragIconElement}
       {children}
     </div>
   );

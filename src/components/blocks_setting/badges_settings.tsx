@@ -123,8 +123,7 @@ const SelectedBadge: React.FC<{ badgeId: string }> = ({ badgeId }) => {
   if (!badge) return null;
 
   return (
-    <div className="flex items-center h-20 p-3 border-b border-gray-200 bg-white">
-      <Icon className="mr-2 text-xl" icon="a-57" />
+    <div className="flex items-center">
       <Icon
         className="w-10 h-10 mx-2 rounded-lg"
         style={{ backgroundColor: badge.color, color: "white" }}
@@ -149,7 +148,7 @@ const BadgesSettings: React.FC = () => {
   }, [blocks.badges]);
 
   const handleAddBadge = () => {
-    setEditingExtra?.(SECTION_KEY.BADGES);
+    setEditingExtra?.({ key: SECTION_KEY.BADGES });
   };
 
   const moveBadge = (dragIndex: number, hoverIndex: number) => {
@@ -175,6 +174,8 @@ const BadgesSettings: React.FC = () => {
           id={badgeId}
           index={index}
           prefix={SECTION_KEY.BADGES}
+          className='h-20 p-3 border-b border-gray-200 bg-white'
+          dragIcon="a-57"
           moveItem={moveBadge}
         >
           <SelectedBadge badgeId={badgeId} />

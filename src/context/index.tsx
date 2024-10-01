@@ -7,6 +7,8 @@ import React, { useState, useContext } from "react";
 interface ProviderProps {
   children: React.ReactNode;
 }
+
+type EditingExtra = {key: string, state?: Record<string, any>}
 export interface GlobalState {
   data: Info
   setData?: CallBackFunc
@@ -14,8 +16,8 @@ export interface GlobalState {
   setTab?: CallBackFunc
   editingKey?: string
   setEditingKey?: CallBackFunc
-  editingExtra?: string
-  setEditingExtra?: CallBackFunc
+  editingExtra?: EditingExtra
+  setEditingExtra?: CallBackFunc<EditingExtra>
   locationKey?: string
   setLocationKey?: CallBackFunc
 }
@@ -30,8 +32,10 @@ export const Provider: React.FC<ProviderProps> = (
 ): JSX.Element => {
   const [data, setData] = useState(infoData);
   const [tab, setTab] = useState(BLOCKS_KEY);
+
   const [editingKey, setEditingKey] = useState<string>('');
-  const [editingExtra, setEditingExtra] = useState<string>();
+  const [editingExtra, setEditingExtra] = useState<EditingExtra>();
+
   const [locationKey, setLocationKey] = useState<string>();
 
   return (

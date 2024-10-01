@@ -9,6 +9,15 @@ export const baseBlocks: Blocks = {
   badges: ['Entrepreneur'],
   about_me: '',
   contact_me: '',
+
+  socials: [
+    {
+      id: "1",
+      name: "Facebook",
+      icon: "a-62",
+      link: "https://facebook.com",
+    },
+  ]
 }
 
 export const infoData: Info =  {

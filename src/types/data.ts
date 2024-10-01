@@ -16,10 +16,19 @@ export interface Blocks {
   badges?: string[];
   about_me?: string;
   contact_me?: string;
+
+  socials?: Social[];
 }
 
 export interface Badge {
   name: string;
   color: string;
   icon: string;
+}
+
+export interface Social {
+  id: string;
+  name: string;
+  icon?: string;
+  link?: string;
 }
