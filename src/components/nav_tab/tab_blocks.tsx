@@ -4,8 +4,8 @@ import { useGlobalContext } from "@/context";
 import Icon from "@/utils/icon";
 import { SECTION_KEY, SECTION_TITLE } from '@/constant/general';
 
-const SectionHeader: React.FC<{ title: string }> = ({ title }) => {
-  return <h2 className="text-lg font-bold px-4 py-1">{title}</h2>;
+export const SectionHeader: React.FC<{ title: string }> = ({ title }) => {
+  return <h2 className="text-xl font-bold p-4">{title}</h2>;
 };
 
 const BlockItem: React.FC<{

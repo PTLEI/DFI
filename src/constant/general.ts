@@ -1,5 +1,20 @@
 import { Badge, Blocks, Info } from '@/types/data'
 
+export const FONTS = [
+  { name: "Default Font", value: "Arial" },
+  { name: "Serif Font", value: "Georgia" },
+  { name: "Monospace Font", value: "Courier New" },
+  { name: "Cursive Font", value: "Brush Script MT" },
+  { name: "Fantasy Font", value: "Papyrus" },
+];
+
+export const COLORS = [
+  { name: "Default Color", value: ["#FFFFFF", "var(--foreground)"] },
+  { name: "Red Color", value: ["#FFF1F1", "#FF7474"] },
+  { name: "Green Color", value: ["#E5F8EF", "#00B85C"] },
+  { name: "Blue Color", value: ["#EBF3FF", "#328AFF", ] },
+]
+
 export const baseBlocks: Blocks = {
   avatar: '/favicon.ico',
   first_name: 'First Name ',
@@ -22,8 +37,8 @@ export const baseBlocks: Blocks = {
 
 export const infoData: Info =  {
   layout: '',
-  color: '',
-  type: '',
+  color: COLORS[0].name,
+  type: FONTS[0].name,
   blocks: baseBlocks
 }
 

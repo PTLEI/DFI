@@ -35,9 +35,10 @@ const ContentDashed = ({
       id={id}
       ref={ref}
       className={clsx(
-        "content-dashed rounded-xl",
-        locationKey === id && "located",
-        editing && "animate-pulse"
+        "content-dashed rounded-xl", {
+          "located": locationKey === id,
+          "animate-pulse": editing
+        },
       )}
       onClick={handleEdit}
     >
