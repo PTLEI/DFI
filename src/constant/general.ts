@@ -15,6 +15,57 @@ export const COLORS = [
   { name: "Blue Color", value: ["#EBF3FF", "#328AFF", ] },
 ]
 
+// 现行 方案一，使用 className/style 实现 -> 因为貌似tailwind 做了tree shaking 所以动态的 className有点问题 最后用了style
+// Todo 方案二，使用类似 AST 的结构，结合React.createElement 实现
+export const LAYOUTS = [
+  {
+    id: 'default',
+    name: 'Default',
+    layout: {}
+  },
+  {
+    id: 'layout_1',
+    name: 'Layout 1',
+    layout: {
+      container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+      },
+      avatar: {
+        flex: 'none',
+      },
+      last_name: {
+        flex: '1',
+        alignSelf: 'center',
+        marginLeft: '2rem',
+        fontSize: '4xl',
+      },
+      name: {
+        width: '100%',
+        justifyContent: 'center',
+      },
+      // container: 'flex flex-wrap',
+      // avatar: 'flex-none',
+      // last_name: 'flex-1 self-center mb-4 ml-8 text-4xl',
+      // name: 'justify-center',
+    }
+  },
+  {
+    id: 'layout_2',
+    name: 'Layout 2',
+    layout: {
+      container: {
+        backgroundImage: 'linear-gradient(45deg, #98FB98 0%, #90EE90 25%, #7CFC00 50%, #00FA9A 75%, #00FF7F 100%)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        borderRadius: '10px',
+        padding: '16px',
+        margin: '-16px',
+      }
+    }
+  }
+]
+
 export const baseBlocks: Blocks = {
   avatar: '/favicon.ico',
   first_name: 'First Name ',

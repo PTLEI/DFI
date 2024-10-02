@@ -6,12 +6,14 @@ import { SECTION_TITLE } from "@/constant/general";
 const ContentDashed = ({
   id,
   className,
+  style,
   children,
   mockAnimation,
   editing,
 }: {
   id: string;
   className?: string;
+  style?: React.CSSProperties;
   mockAnimation?: boolean;
   editing?: boolean;
   children: React.ReactNode;
@@ -45,7 +47,7 @@ const ContentDashed = ({
       <div
         className={clsx("info-block-title hidden font-bold", mockAnimation && "shimmer")}
       >{`${SECTION_TITLE[id]}${mockAnimation ? " (Preview)" : ""}`}</div>
-      <div className={clsx(className, mockAnimation && "shimmer")}>
+      <div className={clsx(className, mockAnimation && "shimmer")} style={style}>
         {children}
       </div>
     </div>

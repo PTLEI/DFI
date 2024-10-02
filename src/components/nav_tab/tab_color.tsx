@@ -52,7 +52,7 @@ export default function TabColor() {
 
   return (
     <Fragment>
-      <SectionHeader title="Choose your color" />
+      <SectionHeader title="Choose Your Color" />
       <ul className="mx-3 mb-6">
         {COLORS.map((color) => (
           <PreviewColor
