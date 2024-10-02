@@ -23,7 +23,7 @@ const PersonInfo = () => {
       <div className="flex items-center" style={{ ...layout.avatar }}>
         {blocks.avatar && (
           <Image
-            className="mb-3 h-40 w-40"
+            className="mb-3 h-40 w-40 object-cover"
             roundedCircle
             src={blocks.avatar}
             alt="avatar"

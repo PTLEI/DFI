@@ -10,7 +10,7 @@ const AboutSettings: React.FC = () => {
 
   const handleChange = (value: string) => {
     setAboutMe(value);
-    updateBlocks({ about_me: value });
+    updateBlocks({ about_me: value === '<p><br></p>' ? undefined : value });
 
     // 可以使用editor.getContents()获取Delta
     // console.log(editor.getContents());

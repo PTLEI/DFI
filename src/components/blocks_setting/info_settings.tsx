@@ -38,16 +38,15 @@ const InfoSettings: React.FC = () => {
           <Form.Label>Avatar</Form.Label>
           <div className="flex items-center">
             <Image
-              className="w-24 h-24 mr-4 flex-none"
+              className="w-24 h-24 mr-4 flex-none object-cover"
               roundedCircle
-              src={blocks.avatar || "/favicon.ico"}
+              src={blocks.avatar || "/p.jpeg"}
               alt="Avatar"
             />
             <label htmlFor="avatarUpload" className="btn btn-primary">
               Upload
             </label>
             <Form.Control
-              id="avatarUpload"
               type="file"
               accept="image/*"
               className="hidden"

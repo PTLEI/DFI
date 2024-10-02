@@ -152,7 +152,7 @@ const BadgesSettings: React.FC = () => {
   };
 
   const moveBadge = (dragIndex: number, hoverIndex: number) => {
-    const badges = blocks.badges || [];
+    const badges = [...(blocks.badges || [])];
     const badge = badges[dragIndex];
     badges.splice(dragIndex, 1);
     badges.splice(hoverIndex, 0, badge);

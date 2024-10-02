@@ -67,7 +67,7 @@ export const LAYOUTS = [
 ]
 
 export const baseBlocks: Blocks = {
-  avatar: '/favicon.ico',
+  avatar: '/p.jpeg',
   first_name: 'First Name ',
   last_name: 'Last Name',
   pronouns: 'Pronouns',
