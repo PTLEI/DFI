@@ -1,5 +1,5 @@
 "use client"
-import { BLOCKS_KEY, infoData, LAYOUT_KEY } from '@/constant/general';
+import { BLOCKS_KEY, infoData } from '@/constant/general';
 import { Info, Blocks } from '@/types/data';
 import { CallBackFunc } from '@/types/general';
 import React, { useState, useContext } from "react";
@@ -8,6 +8,7 @@ interface ProviderProps {
   children: React.ReactNode;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type EditingExtra = {key: string, state?: Record<string, any>}
 export interface GlobalState {
   data: Info
