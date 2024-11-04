@@ -1,7 +1,7 @@
 import { useDrop, useDrag, DragSourceMonitor } from "react-dnd";
 import { Identifier, XYCoord } from "dnd-core";
 import { useRef, useState, useEffect, useMemo } from "react";
-import clix from 'clsx';
+import clsx from 'clsx';
 
 import Icon from '@/utils/icon';
 
@@ -132,7 +132,7 @@ const DraggableItem: React.FC<{
     <div
       ref={ref}
       data-handler-id={handlerId}
-      className={clix('flex items-center [&>:nth-child(2)]:flex-1', className)}
+      className={clsx('flex items-center [&>:nth-child(2)]:flex-1', className)}
       style={{
         opacity,
         transition: 'transform 0.3s ease',
