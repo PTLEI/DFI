@@ -14,8 +14,29 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Interview",
+  title: "Resume Builder",
   description: "Labubu",
+  icons: [{
+    url: '/favicon.ico',
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '180x180',
+  }, {
+    url: '/favicons/favicon-16x16.png',
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '16x16',
+  }, {
+    url: '/favicons/favicon-32x32.png',
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '32x32',
+  }, {
+    url: '/favicons/apple-touch-icon.png',
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '180x180',
+  }],
 };
 
 export default function RootLayout({
